@@ -53,8 +53,6 @@ export default function Scans() {
   // refreshes the scans data
   const refreshData = async (token?:string) => {
     setRefreshing(true);
-    console.log(process.env.API_ENDPOINT);
-    console.log(Config.botEndpoint);
     const scans = await fetch(`${Config.botEndpoint}/api/scans`, {
       method: "GET",
       headers: {
