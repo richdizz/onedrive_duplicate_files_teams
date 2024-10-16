@@ -21,6 +21,15 @@ param webAppName string = resourceBaseName
 param staticWebAppName string = resourceBaseName
 param location string = resourceGroup().location
 
+param aadClientId string
+@secure()
+param aadClientSecret string
+param cosmosConnectionString string
+param cosmosDbName string
+param cosmosContainerName string
+param eventGridEndpoint string
+param eventGridKey string
+
 // Azure Static Web Apps that hosts your static web site
 resource swa 'Microsoft.Web/staticSites@2022-09-01' = {
   name: staticWebAppName
@@ -75,8 +84,45 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
           name: 'BOT_PASSWORD'
           value: botAadAppClientSecret
         }
+        {
+          name: 'AAD_APP_CLIENT_ID'
+          value: aadClientId
+        }
+        {
+          name: 'AAD_APP_CLIENT_SECRET'
+          value: aadClientSecret
+        }
+        {
+          name: 'TEAMS_APP_TENANT_ID'
+          value: tenant().tenantId
+        }
+        {
+          name: 'COSMOS_CONN_STRING'
+          value: cosmosConnectionString
+        }
+        {
+          name: 'COSMOS_DATABASE_NAME'
+          value: cosmosDbName
+        }
+        {
+          name: 'COSMOS_CONTAINER_NAME'
+          value: cosmosContainerName
+        }
+        {
+          name: 'EG_ENDPOINT'
+          value: eventGridEndpoint
+        }
+        {
+          name: 'EG_KEY'
+          value: eventGridKey
+        }
       ]
       ftpsState: 'FtpsOnly'
+      cors: {
+        allowedOrigins: [
+          'https://${swa.properties.defaultHostname}'
+        ]
+      }
     }
   }
 }

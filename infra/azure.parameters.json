@@ -14,6 +14,27 @@
     "botAadAppClientSecret": {
       "value": "${{SECRET_BOT_PASSWORD}}"
     },
+    "aadClientId": {
+      "value": "${{AAD_APP_CLIENT_ID}}"
+    },
+    "aadClientSecret": {
+      "value": "${{SECRET_AAD_APP_CLIENT_SECRET}}"
+    },
+    "cosmosConnectionString": {
+      "value": "${{COSMOS_CONN_STRING}}"
+    },
+    "cosmosDbName": {
+      "value": "${{COSMOS_DATABASE_NAME}}"
+    },
+    "cosmosContainerName": {
+      "value": "${{COSMOS_CONTAINER_NAME}}"
+    },
+    "eventGridEndpoint": {
+      "value": "${{EG_ENDPOINT}}"
+    },
+    "eventGridKey": {
+      "value": "${{EG_KEY}}"
+    },
     "webAppSKU": {
       "value": "B1"
     },
